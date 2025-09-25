@@ -47,9 +47,18 @@ Set enviroment variable
 ```bash
 sudo nano /etc/environment
 ```
-and add the variable SUBSCRIPTION_ID="xyz" with the subscription id from Azure account and login again.
+and add the variable SUBSCRIPTION_ID="xyz" with the subscription id from Azure account and login again. Then, create a runtime for the cluster
+```bash
+python create_image.py
+```
 
-Execute a job
+Create a job cluster
+```bash
+.\scripts\create_cluster.ps1
+```
+
+
+and finally execute the job created
 ```bash
 ./run.sh 165b7f0a-01f2-421a-8892-41335d19bf93
 ```
