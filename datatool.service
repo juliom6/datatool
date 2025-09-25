@@ -1,0 +1,11 @@
+[Unit]
+Description=Datatool
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/home/luser/git/datatool
+ExecStart=/home/luser/git/datatool/.venv/bin/waitress-serve --port=8080 datatool_project.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
