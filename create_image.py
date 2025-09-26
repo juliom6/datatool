@@ -115,63 +115,63 @@ def create_image(subscription_id, resource_group, vm_name, image_name, location,
         )
         result = poller.result()
 
-        # # Step 1: Deallocate the VM
-        # print("Deallocating the VM...")
-        # async_deallocate = compute_client.virtual_machines.begin_deallocate(resource_group, vm_name)
-        # async_deallocate.wait()
+        # Step 1: Deallocate the VM
+        print("Deallocating the VM...")
+        async_deallocate = compute_client.virtual_machines.begin_deallocate(resource_group, vm_name)
+        async_deallocate.wait()
 
-        # # Step 2: Generalize the VM
-        # print("Generalizing the VM...")
-        # compute_client.virtual_machines.generalize(resource_group, vm_name)
+        # Step 2: Generalize the VM
+        print("Generalizing the VM...")
+        compute_client.virtual_machines.generalize(resource_group, vm_name)
 
-        # # Step 3: Create image from VM
-        # print("Creating image from VM...")
-        # image_params = Image(
-        #     location=location,
-        #     source_virtual_machine=SubResource(
-        #         id=f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.Compute/virtualMachines/{vm_name}"
-        #     )
-        # )
+        # Step 3: Create image from VM
+        print("Creating image from VM...")
+        image_params = Image(
+            location=location,
+            source_virtual_machine=SubResource(
+                id=f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.Compute/virtualMachines/{vm_name}"
+            )
+        )
 
-        # async_image_creation = compute_client.images.begin_create_or_update(
-        #     resource_group,
-        #     image_name,
-        #     image_params
-        # )
+        async_image_creation = compute_client.images.begin_create_or_update(
+            resource_group,
+            image_name,
+            image_params
+        )
 
-        # image = async_image_creation.result()
-        # print(f"Successfully created image: {image.id}")
+        image = async_image_creation.result()
+        print(f"Successfully created image: {image.id}")
 
-        # # Deleting resources
-        # vm = compute_client.virtual_machines.get(
-        #     resource_group_name=resource_group,
-        #     vm_name=vm_name,
-        #     expand='instanceView'
-        # )
+        # Deleting resources
+        vm = compute_client.virtual_machines.get(
+            resource_group_name=resource_group,
+            vm_name=vm_name,
+            expand='instanceView'
+        )
 
-        # async_delete = compute_client.virtual_machines.begin_delete(
-        #     resource_group,
-        #     vm_name
-        # )
-        # async_delete.wait()
+        async_delete = compute_client.virtual_machines.begin_delete(
+            resource_group,
+            vm_name
+        )
+        async_delete.wait()
 
-        # os_disk_name = vm.storage_profile.os_disk.name
-        # delete_os_disk_poller = compute_client.disks.begin_delete(
-        #     resource_group_name=resource_group,
-        #     disk_name=os_disk_name
-        # )
-        # delete_os_disk_poller.wait()
+        os_disk_name = vm.storage_profile.os_disk.name
+        delete_os_disk_poller = compute_client.disks.begin_delete(
+            resource_group_name=resource_group,
+            disk_name=os_disk_name
+        )
+        delete_os_disk_poller.wait()
 
-        # # Delete nic
-        # poller = network_client.network_interfaces.begin_delete(resource_group, f"{vm_name}-nic")
-        # poller.wait()
+        # Delete nic
+        poller = network_client.network_interfaces.begin_delete(resource_group, f"{vm_name}-nic")
+        poller.wait()
     
-        # # Delete vnet
-        # poller = network_client.virtual_networks.begin_delete(
-        #     resource_group,
-        #     VNET_NAME
-        # )
-        # poller.wait()
+        # Delete vnet
+        poller = network_client.virtual_networks.begin_delete(
+            resource_group,
+            VNET_NAME
+        )
+        poller.wait()
     except Exception as ex:
         print(f"Error: {ex}")
         raise
