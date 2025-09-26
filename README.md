@@ -3,6 +3,21 @@ Cloud engine for Big Data processing based on Apache Spark
 
 ## Online Documentation
 
+Azure virtual machine creation
+https://youtu.be/KvMG8uI2CJw
+
+Datatool app configuration
+https://youtu.be/aiCwvGYi9k4
+
+Orchestrator configuration and runtime creation
+https://youtu.be/5Soq9U-ovVU
+
+Job cluster creation
+https://youtu.be/ZBDTavyjU4U
+
+Job execution
+https://youtu.be/_-j3WJiwMro
+
 ## Building Datatool
 
 Configure ssh key
@@ -31,7 +46,7 @@ sudo systemctl enable datatool
 sudo systemctl status datatool
 # sudo systemctl restart datatool
 ```
-Additionally, enable port 8080 for inbound traffic in the Azure portal (see documentation).
+Additionally, enable port 8080 for inbound traffic in the Azure portal (see documentation, https://youtu.be/KvMG8uI2CJw).
 
 Configure Orchestrator
 
