@@ -32,7 +32,7 @@ SparkSession.builder.appName(\\"Datatool app\\")
 )
 .config(\\"spark.executor.memory\\", \\"9g\\")
 .config(\\"spark.executor.cores\\", \\"4\\")
-.config(\\"spark.default.parallelism\\", \\"100\\")
+.config(\\"spark.default.parallelism\\", \\"8\\")
 )
 spark = configure_spark_with_delta_pip(builder).getOrCreate()
 
