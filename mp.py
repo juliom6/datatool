@@ -68,7 +68,7 @@ spark.sparkContext._jsc.hadoopConfiguration().set(
             os.system(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "(sudo apt install python3-pip -y;sudo python3 -m pip install numpy pandas msgpack scikit-learn plotly matplotlib delta-spark==3.2.0;export PYSPARK_DRIVER_PYTHON=/usr/bin/python3;export PYSPARK_PYTHON=/usr/bin/python3) >> {vm_name}-log.txt"')
 
         # Cluster initialization
-        os.system(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "sudo /opt/spark/sbin/start-master.sh"')
+        os.system(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "/opt/spark/sbin/start-master.sh"')
 
         # Collect master URL
         MASTER_URL = ""
