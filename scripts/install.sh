@@ -1,5 +1,4 @@
 #!/bin/bash
-
 spark_release="spark-3.5.3-bin-hadoop3" # "spark-4.0.1-bin-hadoop3"
 sudo apt update && sudo apt install default-jdk -y
 echo "export JAVA_HOME=$(dirname $(dirname $(update-alternatives --list javac)))" >> /home/luser/.bashrc
