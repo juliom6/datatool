@@ -3,19 +3,19 @@ Cloud engine for Big Data processing based on Apache Spark
 
 ## Online Documentation
 
-Azure virtual machine creation
+Azure virtual machine creation:
 https://youtu.be/KvMG8uI2CJw
 
-Datatool app configuration
+Datatool app configuration:
 https://youtu.be/aiCwvGYi9k4
 
-Orchestrator configuration and runtime creation
+Orchestrator configuration and runtime creation:
 https://youtu.be/5Soq9U-ovVU
 
-Job cluster creation
+Job cluster creation:
 https://youtu.be/ZBDTavyjU4U
 
-Job execution
+Job execution:
 https://youtu.be/_-j3WJiwMro
 
 ## Building Datatool
