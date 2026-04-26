@@ -40,7 +40,7 @@ python manage.py collectstatic
 Enable waitress service
 
 ```bash
-sudo cp datatool.service /etc/systemd/system/datatool.service
+sudo cp datatool.service datatool_tmp.service && CURRENT_USER=$(whoami) && sudo sed -i "s/luser/$CURRENT_USER/g" datatool_tmp.service && sudo mv datatool_tmp.service /etc/systemd/system/datatool.service
 sudo systemctl start datatool
 sudo systemctl enable datatool
 sudo systemctl status datatool
@@ -50,10 +50,9 @@ Additionally, enable port 8080 for inbound traffic in the Azure portal (see docu
 
 Configure Orchestrator
 
-Instalar Azure CLI
+Install Azure CLI
 
 ```bash
-chmod +x ./run.sh
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login
 ```
@@ -72,9 +71,9 @@ Create a job cluster
 .\scripts\create_cluster.ps1
 ```
 
-
 and finally execute the job created
 ```bash
+chmod +x ./run.sh
 ./run.sh 165b7f0a-01f2-421a-8892-41335d19bf93
 ```
 
