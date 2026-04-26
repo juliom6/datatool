@@ -1,2 +1,3 @@
 #!/bin/bash
-python3 /home/luser/git/datatool/mp.py $1
+CURRENT_USER=$(whoami)
+python3 /home/$CURRENT_USER/git/datatool/mp.py $1
