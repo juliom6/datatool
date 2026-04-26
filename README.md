@@ -54,7 +54,7 @@ Install Azure CLI
 
 ```bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-az login
+az login --use-device-code
 ```
 
 Set enviroment variable
