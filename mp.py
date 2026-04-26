@@ -209,7 +209,7 @@ if __name__ == "__main__":
     credential = DefaultAzureCredential()
     SUBSCRIPTION_ID = os.environ.get("SUBSCRIPTION_ID", "56f26a54-203e-406e-9b0f-0740228ad179")
     CLUSTER_ID = cluster["cluster_id"]
-    LOCATION = "canadacentral"
+    LOCATION = "denmarkeast"
     RESOURCE_GROUP_NAME = f"{CLUSTER_ID}-rg"
     NUM_WORKERS = cluster["num_workers"]
     WORKER_NODE_TYPE = cluster["worker_node_type"]
