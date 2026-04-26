@@ -227,7 +227,7 @@ if __name__ == "__main__":
     MASTER_URL = ""
 
     # set cluster_status = 1
-    con = sqlite3.connect("/home/luser/git/datatool/db.sqlite3")
+    con = sqlite3.connect("./db.sqlite3")
     cur = con.cursor()
     cur.execute(f"update api_cluster set cluster_status = 1 where cluster_id = '{CLUSTER_ID}'")
     con.commit()
