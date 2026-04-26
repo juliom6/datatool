@@ -184,6 +184,6 @@ create_image(
     resource_group="images-rg",
     vm_name="image-vm",
     image_name="test-image-name",
-    location="canadacentral",
+    location="denmarkeast",
     libraries=libraries
 )
