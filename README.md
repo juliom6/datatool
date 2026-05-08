@@ -67,12 +67,12 @@ and add the variable SUBSCRIPTION_ID="xyz" with the subscription id from Azure a
 python create_image.py
 ```
 
-Create a job cluster
+Create a job cluster and it will be executed automatically
 ```bash
 .\scripts\create_cluster.ps1
 ```
 
-and finally execute the job created
+optionally, you can execute the job
 ```bash
 ./run.sh 165b7f0a-01f2-421a-8892-41335d19bf93
 ```
