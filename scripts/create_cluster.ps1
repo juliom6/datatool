@@ -26,6 +26,7 @@ $body = @{
     driver_node_type = "Standard_DS3_v2"
     num_workers = 2
     python_script_url = "https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/examples/read_write_dataframe.py"
+    trigger_at = "45 1 * * *"
     storage_name = "xyz123456789"
     container_name = "testcontainer"
     access_key = "<access key from Azure portal>"
