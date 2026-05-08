@@ -8,6 +8,13 @@ class CreateCluster(CreateAPIView):
     queryset = Cluster.objects.all()
     serializer_class = ClusterSerializer
 
+    def perform_create(self, serializer):
+    	instance = serializer.save()
+    	self.schedule_job_cluster(instance)
+    	
+    def schedule_job_cluster(self, instance):
+    	print(instance.cluster_id)
+
 
 class ListCluster(ListAPIView):
     queryset = Cluster.objects.all()
