@@ -53,6 +53,7 @@ Configure Orchestrator
 Install Azure CLI
 
 ```bash
+chmod +x ./run.sh ./run_env.sh
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login --use-device-code
 ```
@@ -73,7 +74,6 @@ Create a job cluster
 
 and finally execute the job created
 ```bash
-chmod +x ./run.sh
 ./run.sh 165b7f0a-01f2-421a-8892-41335d19bf93
 ```
 
