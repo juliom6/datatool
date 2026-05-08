@@ -196,7 +196,7 @@ def create_node(vm_name, node_type, node_rol, private_ip):
 if __name__ == "__main__":
 
     # collects clusters data
-    con = sqlite3.connect("./git/datatool/db.sqlite3")
+    con = sqlite3.connect("./db.sqlite3")
     con.row_factory = dict_factory
     cursor = con.execute(f"select * from api_cluster where cluster_id = '{sys.argv[1].replace("-", "")}'")
     lista_clusters = cursor.fetchall()
@@ -227,7 +227,7 @@ if __name__ == "__main__":
     MASTER_URL = ""
 
     # set cluster_status = 1
-    con = sqlite3.connect("./git/datatool/db.sqlite3")
+    con = sqlite3.connect("./db.sqlite3")
     cur = con.cursor()
     cur.execute(f"update api_cluster set cluster_status = 1 where cluster_id = '{CLUSTER_ID}'")
     con.commit()
@@ -383,7 +383,7 @@ if __name__ == "__main__":
     fin_ejecucion = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
 
     # set cluster_status = 2
-    con = sqlite3.connect("./git/datatool/db.sqlite3")
+    con = sqlite3.connect("./db.sqlite3")
     cur = con.cursor()
     cur.execute(f"update api_cluster set cluster_status = 2, message = '{res}', uri_master = '{MASTER_URL}', ip = '{ip_address_result.ip_address}', start_timestamp = '{inicio_ejecucion}', end_timestamp = '{fin_ejecucion}' where cluster_id = '{CLUSTER_ID}'")
     con.commit()
