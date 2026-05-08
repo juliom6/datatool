@@ -14,6 +14,7 @@ class ClusterAdmin(admin.ModelAdmin):
         "num_workers",
         "cluster_status",
         "python_script_url",
+        "trigger_at",
         "storage_name",
         "container_name",
         "create_from_image",
