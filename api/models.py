@@ -23,6 +23,7 @@ class Cluster(models.Model):
         default=0
     )  # 0: to be created, 1: being_created, 2: creation_completed
     python_script_url = models.CharField(max_length=5000)
+    trigger_at = models.CharField(max_length=30, default="")
     storage_name = models.CharField(max_length=200)
     container_name = models.CharField(max_length=200)
     access_key = models.CharField(max_length=200)
