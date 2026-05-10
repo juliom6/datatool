@@ -40,7 +40,7 @@ python manage.py collectstatic
 Enable waitress service
 
 ```bash
-sudo cp datatool.service datatool_tmp.service && CURRENT_USER=$(whoami) && sudo sed -i "s/luser/$CURRENT_USER/g" datatool_tmp.service && sudo mv datatool_tmp.service /etc/systemd/system/datatool.service
+sudo cp datatool.service /etc/systemd/system/datatool.service
 sudo systemctl start datatool
 sudo systemctl enable datatool
 sudo systemctl status datatool
