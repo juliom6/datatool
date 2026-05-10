@@ -51,9 +51,9 @@ chmod +x ./run.sh ./run_env.sh && sudo timedatectl set-timezone America/Lima
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && az login --use-device-code
 ```
 
-Set enviroment variable
+Set SUBSCRIPTION_ID enviroment variable
 ```bash
-sudo nano /etc/environment
+SUBS_ID=$(az account show --query id --output tsv) && sudo echo "SUBSCRIPTION_ID='$SUBS_ID'"| sudo tee -a /etc/environment && set -a; source /etc/environment; set +a
 ```
 and add the variable SUBSCRIPTION_ID="xyz" with the subscription id from Azure account and login again. Then, create a runtime for the cluster
 ```bash
