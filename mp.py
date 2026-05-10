@@ -48,10 +48,10 @@ spark.sparkContext._jsc.hadoopConfiguration().set(
         run_command_parameters = {
             "command_id": "RunShellScript",
             "script": [
-                f"echo \"{header_template}\" > /home/luser/script.py",
-                f"curl {SCRIPT_URL} -o /home/luser/tmp",
-                f"cat /home/luser/tmp >> /home/luser/script.py && rm /home/luser/tmp",
-                f"echo \"{authorized_key}\" > /home/luser/.ssh/authorized_keys",
+                f"echo \"{header_template}\" > /home/datatool/script.py",
+                f"curl {SCRIPT_URL} -o /home/datatool/tmp",
+                f"cat /home/datatool/tmp >> /home/datatool/script.py && rm /home/datatool/tmp",
+                f"echo \"{authorized_key}\" > /home/datatool/.ssh/authorized_keys",
             ],
         }
 
@@ -63,18 +63,18 @@ spark.sparkContext._jsc.hadoopConfiguration().set(
         global CREATE_FROM_IMAGE
         if CREATE_FROM_IMAGE == 0:
             # Installing Spark
-            os.system(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "(curl https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/scripts/install.sh -o /home/luser/install.sh && chmod +x /home/luser/install.sh && /home/luser/install.sh) >> {vm_name}-log.txt"')
+            os.system(f'ssh -o StrictHostKeyChecking=no datatool@{ip_address_result.ip_address} "(curl https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/scripts/install.sh -o /home/datatool/install.sh && chmod +x /home/datatool/install.sh && /home/datatool/install.sh) >> {vm_name}-log.txt"')
             # Installing libraries
-            os.system(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "(sudo apt install python3-pip -y;sudo python3 -m pip install numpy pandas msgpack scikit-learn plotly matplotlib delta-spark==3.2.0;export PYSPARK_DRIVER_PYTHON=/usr/bin/python3;export PYSPARK_PYTHON=/usr/bin/python3) >> {vm_name}-log.txt"')
+            os.system(f'ssh -o StrictHostKeyChecking=no datatool@{ip_address_result.ip_address} "(sudo apt install python3-pip -y;sudo python3 -m pip install numpy pandas msgpack scikit-learn plotly matplotlib delta-spark==3.2.0;export PYSPARK_DRIVER_PYTHON=/usr/bin/python3;export PYSPARK_PYTHON=/usr/bin/python3) >> {vm_name}-log.txt"')
 
         # Cluster initialization
-        os.system(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "/opt/spark/sbin/start-master.sh"')
+        os.system(f'ssh -o StrictHostKeyChecking=no datatool@{ip_address_result.ip_address} "/opt/spark/sbin/start-master.sh"')
 
         # Collect master URL
         MASTER_URL = ""
         while MASTER_URL == "":
             time.sleep(5)
-            result = os.popen(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "curl http://{private_ip}:8080/"').read()
+            result = os.popen(f'ssh -o StrictHostKeyChecking=no datatool@{ip_address_result.ip_address} "curl http://{private_ip}:8080/"').read()
             inicio = result.find("<li><strong>URL:</strong> ")
             fin = result.find(":7077</li>")
             MASTER_URL = result[inicio + len("<li><strong>URL:</strong> ") : fin + len(":7077")]
@@ -98,7 +98,7 @@ def configure_workers(vm_name, node_type, node_rol, private_ip):
             run_command_parameters = {
                 "command_id": "RunShellScript",
                 "script": [
-                    f"(curl https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/scripts/install.sh -o /home/luser/install.sh && chmod +x /home/luser/install.sh && /home/luser/install.sh) >> {vm_name}-log.txt",
+                    f"(curl https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/scripts/install.sh -o /home/datatool/install.sh && chmod +x /home/datatool/install.sh && /home/datatool/install.sh) >> {vm_name}-log.txt",
                     f"(sudo apt install python3-pip -y && sudo python3 -m pip install numpy pandas msgpack scikit-learn plotly matplotlib delta-spark==3.2.0 && export PYSPARK_DRIVER_PYTHON=/usr/bin/python3 && export PYSPARK_PYTHON=/usr/bin/python3) >> {vm_name}-log.txt",
                     f"/opt/spark/sbin/start-worker.sh {MASTER_URL}",
                 ],
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     CREATE_FROM_IMAGE = cluster["create_from_image"]
     IMAGE_ID = cluster["image_id"]
 
-    USERNAME = os.environ.get("USERNAME", "luser")
+    USERNAME = os.environ.get("USERNAME", "datatool")
     PASSWORD = os.environ.get("PASSWORD", "changeThisPass##!1234")
     MASTER_URL = ""
 
@@ -377,7 +377,7 @@ if __name__ == "__main__":
     ##################################
 
     # Execute job
-    res = os.popen(f'ssh -o StrictHostKeyChecking=no luser@{ip_address_result.ip_address} "/opt/spark/bin/spark-submit --master {MASTER_URL} /home/luser/script.py"').read()
+    res = os.popen(f'ssh -o StrictHostKeyChecking=no datatool@{ip_address_result.ip_address} "/opt/spark/bin/spark-submit --master {MASTER_URL} /home/datatool/script.py"').read()
     print(res)
 
     fin_ejecucion = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
