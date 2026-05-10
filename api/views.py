@@ -16,7 +16,7 @@ class CreateCluster(CreateAPIView):
 
     def schedule_job_cluster(self, instance):
         cron = CronTab(user=True)
-        job = cron.new(command=f'./git/datatool/run_env.sh {str(instance.cluster_id)} >> ./{str(instance.cluster_id).log 2>&1')
+        job = cron.new(command=f'./git/datatool/run_env.sh {str(instance.cluster_id)} >> ./datatool_logs/{str(instance.cluster_id).log 2>&1')
         job.setall(instance.trigger_at)
         cron.write()
         print(str(instance.cluster_id))
