@@ -36,10 +36,8 @@ pip install -r requirements.txt && python manage.py makemigrations && python man
 Enable waitress service
 
 ```bash
-sudo cp datatool.service /etc/systemd/system/datatool.service
-sudo systemctl start datatool
-sudo systemctl enable datatool
-sudo systemctl status datatool
+sudo cp datatool.service /etc/systemd/system/datatool.service && sudo systemctl start datatool && sudo systemctl enable datatool
+# sudo systemctl status datatool
 # sudo systemctl restart datatool
 ```
 Additionally, enable port 8080 for inbound traffic in the Azure portal (see documentation, https://youtu.be/KvMG8uI2CJw).
