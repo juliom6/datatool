@@ -48,8 +48,7 @@ Install Azure CLI
 
 ```bash
 chmod +x ./run.sh ./run_env.sh && sudo timedatectl set-timezone America/Lima
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-az login --use-device-code
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && az login --use-device-code
 ```
 
 Set enviroment variable
