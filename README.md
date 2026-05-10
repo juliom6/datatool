@@ -30,11 +30,7 @@ Configure Django app
 
 ```bash
 mkdir git && cd git && git clone https://github.com/juliom6/datatool.git && cd datatool && sudo apt update && sudo apt install python3-pip -y && sudo apt install python3-venv -y && python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py collectstatic
+pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic && python manage.py createsuperuser
 ```
 
 Enable waitress service
