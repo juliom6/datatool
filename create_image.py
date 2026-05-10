@@ -87,7 +87,7 @@ def create_image(subscription_id, resource_group, vm_name, image_name, location,
                 "hardware_profile": {"vm_size": "Standard_DS3_v2"},
                 "os_profile": {
                     "computer_name": vm_name,
-                    "admin_username": os.environ.get("USERNAME", "luser"),
+                    "admin_username": os.environ.get("USERNAME", "datatool"),
                     "admin_password": os.environ.get("PASSWORD", "changeThisPass##!1234"),
                 },
                 "network_profile": {
@@ -105,7 +105,7 @@ def create_image(subscription_id, resource_group, vm_name, image_name, location,
         run_command_parameters = {
             "command_id": "RunShellScript",
             "script": [
-                f"(curl https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/scripts/install.sh -o /home/luser/install.sh && chmod +x /home/luser/install.sh && /home/luser/install.sh) >> {vm_name}-log.txt",
+                f"(curl https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/scripts/install.sh -o /home/datatool/install.sh && chmod +x /home/datatool/install.sh && /home/datatool/install.sh) >> {vm_name}-log.txt",
                 f"(sudo apt install python3-pip -y && sudo python3 -m pip install {libraries} && export PYSPARK_DRIVER_PYTHON=/usr/bin/python3 && export PYSPARK_PYTHON=/usr/bin/python3) >> {vm_name}-log.txt",
             ],
         }
