@@ -26,13 +26,13 @@ $body = @{
     driver_node_type = "Standard_DS3_v2"
     num_workers = 2
     python_script_url = "https://raw.githubusercontent.com/juliom6/datatool/refs/heads/main/examples/read_write_dataframe.py"
-    trigger_at = "45 1 * * *"
-    storage_name = "xyz123456789"
+    trigger_at = "40 10 * * *"
+    storage_name = "datalake0001sa"
     container_name = "testcontainer"
-    access_key = "<access key from Azure portal>"
+    access_key = "<access_key>"
     delete_after_execution = "true"
     create_from_image = "true"
-    image_id = "/subscriptions/56f26a54-203e-406e-9b0f-0740228ad179/resourceGroups/images-rg/providers/Microsoft.Compute/images/test-image-name"
+    image_id = "/subscriptions/<subscription_id>/resourceGroups/images-rg/providers/Microsoft.Compute/images/test-image-name"
 } | ConvertTo-Json
 
 $headers = @{
