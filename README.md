@@ -51,7 +51,7 @@ chmod +x ./run.sh ./run_env.sh && sudo timedatectl set-timezone America/Lima
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && az login --use-device-code
 ```
 
-Set the SUBSCRIPTION_ID enviroment variable
+Set the SUBSCRIPTION_ID enviroment variable and restart the server
 ```bash
 SUBS_ID=$(az account show --query id --output tsv) && sudo echo "SUBSCRIPTION_ID='$SUBS_ID'"| sudo tee -a /etc/environment && set -a; source /etc/environment; set +a
 ```
